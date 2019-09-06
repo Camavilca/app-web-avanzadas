@@ -1,0 +1,36 @@
+extends layout
+
+block content
+   nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4
+    a.navbar-brand(href='/') Mac OR
+    button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarCollapse' aria-controls='navbarCollapse' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarCollapse.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+        li.nav-item
+          a.nav-link(href='nosotros') Nosotros
+        li.nav-item
+          a.nav-link(href='servicios') Servicios
+        li.nav-item
+          a.nav-link(href='contacto') Contacto
+      form.form-inline.mt-2.mt-md-0
+        input.form-control.mr-sm-2(type='text' placeholder='Buscar' aria-label='Buscar')
+        button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Buscar
+   main.container(role="main")
+     .card
+      .card-header
+        p.text-uppercase ingrese sus datos
+      .card-body
+        form(action="/update/"+contacto._id+"/item", method="post")
+            label(for="nombre" class="text-info" ) Nombre*
+            input(type="text",id="nombre",class="form-control" name="nombre" value=contacto.nombre placeholder="Ingrese nombre")
+            label(for="correo" class="text-info" ) Correo*
+            input(type="email",id="correo",class="form-control" name="correo" value=contacto.correo  placeholder="Ingrese correo")
+            label(for="telefono" class="text-info" ) Telefono*
+            input(type="text",id="telefono",class="form-control" name="telefono" value=contacto.telefono placeholder="Ingrese telefono")
+            label(for="nacimiento" class="text-info" ) Fecha Nacimiento*
+            input(type="date",id="nacimiento",class="form-control" name="nacimiento" value=contacto.nacimiento placeholder="Ingrese nacimiento")
+            label(for="mensaje" class="text-info" ) Mensaje*
+            input(type="text" id="mensaje" class="form-control"  name="mensaje" value=contacto.mensaje placeholder="Ingrese el mensaje")
+            //- textarea(name="mensaje", id="mensaje" cols="30", rows="3" value=contacto.mensaje class="form-control")
+            button(type="submit", class="btn btn-primary mt-5") Actualizar   

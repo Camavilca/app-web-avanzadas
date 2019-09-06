@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4
+      a.navbar-brand(href='/') Mac OR
+      button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarCollapse' aria-controls='navbarCollapse' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarCollapse.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item
+            a.nav-link(href='nosotros') Nosotros
+          li.nav-item
+            a.nav-link(href='servicios') Servicios
+          li.nav-item
+            a.nav-link(href='contacto') Contacto
+        form.form-inline.mt-2.mt-md-0
+          input.form-control.mr-sm-2(type='text' placeholder='Buscar' aria-label='Buscar')
+          button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Buscar
+  .container-fluid.m-3
+    .row
+      each dato in datos
+       .card.m-2.border.border-primary
+         div(class="card-header border-primary" style="")
+             h5(class="card-title text-center text-lowercase text-info")= dato.nombre
+         .card-body
+            span.text-info Nombre 
+            p= dato.correo
+            span.text-info Telefono 
+            p= dato.telefono
+            span.text-info Nacimiento 
+            p= dato.nacimiento
+            span.text-info Mensaje 
+            p= dato.mensaje
+         .card-footer.btn-group
+          form(action="/editar/"+dato._id+"/item", method="post")
+            button.btn.btn-outline-primary.btn-sm.float-left Editar
+          form(action="/eliminar/"+dato._id+"/item", method="post")
+            button.btn.btn-outline-danger.btn-sm.float-rigth Eliminar
+          //- a(href='#', data-id=dato._id, class="btn btn-outline-danger") Eliminar
+           
